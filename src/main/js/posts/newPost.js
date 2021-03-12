@@ -1,37 +1,37 @@
-import React from 'react';
-const client = require('../client');
+import React from 'react'; // this file uses React framework
+const client = require('../client'); // require the 'client' file from the dir above
 
 class NewPost extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {content: ''};
+    constructor(props) {
+        super(props); // inherit the prop(ertie?)s from Component
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.input = React.createRef();
+    }
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+    handleSubmit(event) { // this is the function that will be fired upon submission of the form
+        event.preventDefault(); // prevent the default action and use this one instead
+        fetch('http://localhost:8080/api/posts', { // use the fetch method (research)
+            method: 'POST', // Obviously use the POST http request
+            headers: {
+                'Content-Type': 'application/json', // send it as a json. Does this let the server know that it can accept it because it is json?
+            },
+            body: JSON.stringify({content: this.input.current.value}), // Sting-ify (make a string) of the object so it is easier for the server to read?
+        }).then((response) => {return response.json()}).then((data) => {this.props.updatePosts(data)} )
+    }
 
-  handleChange(event) {
-    this.setState({content: event.target.value});
-  }
-
-  handleSubmit(event) {
-      client({
-				method: 'POST',
-				path: response.entity._links.self.href,
-				entity: Post(this.state.content),
-				headers: {'Content-Type': 'application/json'}
-			})
-    event.preventDefault();
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <input type="text" value={this.state.content} onChange={this.handleChange} />
-        <input type="submit" value="Submit" />
-      </form>
-    );
-  }
+    render() {
+        return(
+        <form onSubmit={this.handleSubmit}>
+            <label>
+                Name:
+                <input type="text" ref={this.input} />
+            </label>
+            <input type="submit" value="Submit" />
+        </form>
+        );
+    }
 }
 
 export default NewPost;
+
+// CODE USED FROM EDDIE'S BRANCH ON acebook-template
