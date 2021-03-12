@@ -15,7 +15,12 @@ class NewPost extends React.Component {
   }
 
   handleSubmit(event) {
-    client({method: 'POST', path: '/api/posts', content: 'HARD CORDED'});
+      client({
+				method: 'POST',
+				path: response.entity._links.self.href,
+				entity: Post(this.state.content),
+				headers: {'Content-Type': 'application/json'}
+			})
     event.preventDefault();
   }
 
