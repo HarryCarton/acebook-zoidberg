@@ -23,7 +23,7 @@ class PostsBuilder extends React.Component {
 	render() {
 		return (
 	    <div id='post-list'>
-            <NewPost updatePosts={this.updatePosts}/> // this is the newPost class added in eddie's vid
+            <NewPost updatePosts={this.updatePosts}/> 
             <Posts posts={this.state.posts}/>
         </div>
 		)

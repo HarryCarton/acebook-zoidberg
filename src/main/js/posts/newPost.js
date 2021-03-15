@@ -21,12 +21,9 @@ class NewPost extends React.Component {
 
     render() { // renders a component with a form in it
         return(
-        <form onSubmit={this.handleSubmit}> // On submission of this form, fire the handleSubmit function
-            <label>
-                Name:
-                <input type="text" ref={this.input} /> // This may need to be changed for the feature request where posts can have new lines
-            </label>
-            <input type="submit" value="Submit" /> // onSubmit listens for this
+        <form onSubmit={this.handleSubmit}>
+            <textarea rows="8" cols="50" ref={this.input}>Whats on your mind</textarea>
+            <input type="submit" value="Post" />
         </form>
         );
     }
