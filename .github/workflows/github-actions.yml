@@ -17,8 +17,11 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots verify
-      - name: Install node
-        run: nvm install node
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: npm install
+      - run: npm test
   deploy:
     needs: build
     runs-on: ubuntu-latest
