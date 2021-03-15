@@ -17,6 +17,8 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots verify
+      - name: Install node
+        run: nvm install node
   deploy:
     needs: build
     runs-on: ubuntu-latest
