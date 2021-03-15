@@ -11,7 +11,7 @@ It uses:
 
 ### Card wall
 
-REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
+Our card wall can be found [here](https://trello.com/b/hgAc3uPA/zoidberg)
 
 ### Design
 
