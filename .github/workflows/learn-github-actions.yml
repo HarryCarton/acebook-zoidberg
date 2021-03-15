@@ -1,7 +1,6 @@
 name: learn-github-actions
 on: [push]
 jobs:
-  run-test:
     build:
     runs-on: ubuntu-latest
     steps:
