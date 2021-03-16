@@ -11,4 +11,5 @@
 
 textarea {
     resize: none;
+    white-space: pre-wrap;
 }
