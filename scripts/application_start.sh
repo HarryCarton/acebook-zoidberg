@@ -19,8 +19,18 @@
 # node ./bin/www &> /dev/null &
 
 cd ~
-# sudo yum install java-1.8.0-openjdk
-# sudo yum install -y maven
+sudo yum install -y java-1.8.0-openjdk-devel.x86_64
+sudo alternatives --config java
+cd /usr/local/lib/
+sudo wget http://ftp.meisei-u.ac.jp/mirror/apache/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+sudo tar -xzvf apache-maven-3.6.3-bin.tar.gz
+sudo mv apache-maven-3.6.3 /opt/
+cd /opt/
+sudo ln -s /opt/apache-maven-3.6.3 apache-maven
+cd
+echo 'MVN_HOME=/opt/apache-maven' >>~/.bash_profile
+echo 'PATH=$MVN_HOME/bin:$PATH:$HOME/.local/bin:$HOME/bin' >>~/.bash_profile
+source .bash_profile
 sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 . ~/.nvm/nvm.sh
 nvm install node
