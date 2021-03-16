@@ -20,7 +20,7 @@
 
 cd ~
 sudo yum install -y maven
-sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 . ~/.nvm/nvm.sh
 nvm install node
 sudo yum install -y postgresql postgresql-server
