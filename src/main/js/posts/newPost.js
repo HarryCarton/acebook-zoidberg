@@ -22,7 +22,7 @@ class NewPost extends React.Component {
     render() { // renders a component with a form in it
         return(
         <form onSubmit={this.handleSubmit}>
-            <textarea placeholder="Whats on your mind" rows="8" cols="50" ref={this.input}/>
+            <textarea placeholder="Whats on your mind" rows="8" cols="50" ref={this.input}/><br />
             <input type="submit" value="Post" />
         </form>
         );
