@@ -19,7 +19,8 @@
 # node ./bin/www &> /dev/null &
 
 cd ~
-sudo yum install -y maven
+# sudo yum install java-1.8.0-openjdk
+# sudo yum install -y maven
 sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 . ~/.nvm/nvm.sh
 nvm install node
