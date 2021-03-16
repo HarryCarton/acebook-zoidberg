@@ -39,4 +39,4 @@ sudo service postgresql initdb
 sudo service postgresql start
 sudo -u postgres createuser -s ec2-user
 createdb acebook_springboot_development
-sudo mvn spring-boot:run
+mvn spring-boot:run
