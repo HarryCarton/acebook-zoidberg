@@ -40,4 +40,4 @@ sudo service postgresql start
 # sudo -u postgres createuser -s ec2-user
 createdb acebook_springboot_development
 sudo chmod -R 777 /home/ec2-user/src/main/resources/static/
-mvn spring-boot:run
+mvn spring-boot:run &> /dev/null &
