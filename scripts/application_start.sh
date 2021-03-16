@@ -34,10 +34,10 @@ source .bash_profile
 sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 . ~/.nvm/nvm.sh
 sudo nvm install node
-sudo yum install -y postgresql postgresql-server
+# sudo yum install -y postgresql postgresql-server
 sudo service postgresql initdb
 sudo service postgresql start
-sudo -u postgres createuser -s ec2-user
+# sudo -u postgres createuser -s ec2-user
 createdb acebook_springboot_development
 sudo chmod -R 777 /home/ec2-user/src/main/resources/static/
 mvn spring-boot:run
