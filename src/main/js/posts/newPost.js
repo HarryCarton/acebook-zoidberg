@@ -14,9 +14,10 @@ class NewPost extends React.Component {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({content: this.input.current.value}),
     }).then((response) => {
-        return response.json()
+        return response.json();
     }).then((data) => {
-        this.props.updatePosts(data)
+        this.props.updatePosts(data);
+        this.input.current.value= '';
     })
   }
 

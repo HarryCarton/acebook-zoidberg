@@ -1,12 +1,12 @@
 .posts-form {
     width: 50%;
-    margin: auto;
+    margin: 0 auto;
     border-collapse: collapse;
 }
 
 .posts-main {
     width: 50%;
-    margin: auto;
+    margin: 0 auto;
     border-collapse: collapse;
 }
 
@@ -17,3 +17,9 @@
     margin-bottom: 0.5rem;
     white-space: pre-line;
 }
+
+textarea {
+  resize: none;
+  overflow: auto;
+}
+
