@@ -1,35 +1,33 @@
 import React from 'react';
-const client = require('../client');
 
 class NewPost extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {content: ''};
-
-    this.handleChange = this.handleChange.bind(this);
+    this.input = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({content: event.target.value});
-  }
-
-  handleSubmit(event) {
-      client({
-				method: 'POST',
-				path: response.entity._links.self.href,
-				entity: Post(this.state.content),
-				headers: {'Content-Type': 'application/json'}
-			})
+ handleSubmit(event) {
     event.preventDefault();
+    fetch('http://localhost:8080/api/posts', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({content: this.input.current.value}),
+    }).then((response) => {
+        return response.json()
+    }).then((data) => {
+        this.props.updatePosts(data)
+    })
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input type="text" value={this.state.content} onChange={this.handleChange} />
-        <input type="submit" value="Submit" />
-      </form>
+        <div className="posts-form">
+            <form onSubmit={this.handleSubmit}>
+                <textarea id="post" rows = "5" cols="35" wrap="hard" ref={this.input} /><br/>
+                <button type="submit">Post</button>
+            </form>
+        </div>
     );
   }
 }
