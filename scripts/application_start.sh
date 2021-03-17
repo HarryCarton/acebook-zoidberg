@@ -34,10 +34,18 @@ source .bash_profile
 sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 . ~/.nvm/nvm.sh
 sudo nvm install node
-# sudo yum install -y postgresql postgresql-server
-sudo service postgresql initdb
-sudo service postgresql start
-# sudo -u postgres createuser -s ec2-user
+sudo amazon-linux-extras install -y epel
+sudo tee /etc/yum.repos.d/pgdg.repo<<EOF
+[pgdg13]
+name=PostgreSQL 13 for RHEL/CentOS 7 - x86_64
+baseurl=https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-7-x86_64
+enabled=1
+gpgcheck=0
+EOF
+sudo yum install -y postgresql13 postgresql13-server
+sudo /usr/pgsql-13/bin/postgresql-13-setup initdb
+sudo systemctl enable --now postgresql-13
+sudo -u postgres createuser -s ec2-user
 createdb acebook_springboot_development
 sudo chmod -R 777 /home/ec2-user/src/main/resources/static/
 mvn spring-boot:run &> /dev/null &
