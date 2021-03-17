@@ -9,6 +9,7 @@ public class PostTest {
 
 	private Post post = new Post("hello");
 
+
 	@Test
 	public void postHasContent() {
 		assertThat(post.getContent(), containsString("hello"));
