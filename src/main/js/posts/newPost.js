@@ -1,34 +1,36 @@
-import React from 'react'; // this file uses React framework
-const client = require('../client'); // require the 'client' file from the dir above
+import React from 'react';
 
 class NewPost extends React.Component {
-    constructor(props) {
-        super(props); // inherit the prop(ertie?)s from Component
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.input = React.createRef();
-    }
+  constructor(props) {
+    super(props);
+    this.input = React.createRef();
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-    handleSubmit(event) { // this is the function that will be fired upon submission of the form
-        event.preventDefault(); // prevent the default action and use this one instead
-        fetch('http://localhost:8080/api/posts', { // use the fetch method (research)
-            method: 'POST', // Obviously use the POST http request
-            headers: {
-                'Content-Type': 'application/json', // send it as a json. Does this let the server know that it can accept it because it is json?
-            },
-            body: JSON.stringify({content: this.input.current.value}), // Sting-ify (make a string) of the object so it is easier for the server to read?
-        }).then((response) => {return response.json()}).then((data) => {this.props.updatePosts(data)} ) // no idea what this line is doing. Yet.
-    }
+ handleSubmit(event) {
+    event.preventDefault();
+    fetch('http://localhost:8080/api/posts', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({content: this.input.current.value}),
+    }).then((response) => {
+        return response.json();
+    }).then((data) => {
+        this.props.updatePosts(data);
+        this.input.current.value= '';
+    })
+  }
 
-    render() { // renders a component with a form in it
-        return(
-        <form onSubmit={this.handleSubmit}>
-            <textarea placeholder="Whats on your mind" rows="8" cols="50" ref={this.input}/><br />
-            <input type="submit" value="Post" />
-        </form>
-        );
-    }
+  render() {
+    return (
+        <div className="posts-form">
+            <form onSubmit={this.handleSubmit}>
+                <textarea id="post" rows = "5" cols="35" wrap="hard" ref={this.input} /><br/>
+                <button type="submit">Post</button>
+            </form>
+        </div>
+    );
+  }
 }
 
-export default NewPost; // ???
-
-// CODE USED FROM EDDIE'S BRANCH ON acebook-template
+export default NewPost; 
