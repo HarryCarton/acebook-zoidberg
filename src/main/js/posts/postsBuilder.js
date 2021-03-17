@@ -20,13 +20,13 @@ class PostsBuilder extends React.Component {
     });
   }
 
-render() {
-	return (
-	    <div>
-	    <NewPost updatePosts={this.updatePosts}/>
-        <Posts posts={this.state.posts}/>
+	render() {
+		return (
+	    <div id='post-list'>
+            <NewPost updatePosts={this.updatePosts}/>
+            <Posts posts={this.state.posts}/>
         </div>
-	  )
+		)
 	}
 }
 

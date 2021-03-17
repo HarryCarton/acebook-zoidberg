@@ -33,4 +33,4 @@ class NewPost extends React.Component {
   }
 }
 
-export default NewPost;
+export default NewPost; 
