@@ -24,6 +24,8 @@ public class Post {
     @CreationTimestamp
     private Timestamp stamp;
 
+    private int likes;
+
     private Post() {}
 
     public Post(String content) {
