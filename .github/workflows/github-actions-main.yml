@@ -1,0 +1,51 @@
+name: github-actions-on-main
+on: 
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Cache Maven packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      - name: Build with Maven
+        run: mvn --batch-mode --update-snapshots verify
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: deploy to AWS
+        env: 
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          aws deploy push \
+          --application-name acebook-zoidberg-production \
+          --description "This is a revision for the acebook-${{ github.sha }}" \
+          --region us-east-2 \
+          --ignore-hidden-files \
+          --s3-location s3://acebook-zoidberg/acebook-zoidberg-${{ github.sha }}.zip \
+          --source .
+      - name: CodeDeploy
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          aws deploy create-deployment \
+          --application-name acebook-zoidberg-production \
+          --deployment-config-name CodeDeployDefault.OneAtATime \
+          --deployment-group-name production \
+          --region us-east-2 \
+          --file-exists-behavior OVERWRITE \
+          --s3-location "bucket=acebook-zoidberg, bundleType=zip, key=acebook-zoidberg-${{ github.sha }}.zip"
