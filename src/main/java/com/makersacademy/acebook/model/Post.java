@@ -29,7 +29,6 @@ public class Post {
 
     public Post(String content) {
         this.content = content;
-        this.stamp = Timestamp.valueOf(LocalDateTime.now());
     }
 
 }
