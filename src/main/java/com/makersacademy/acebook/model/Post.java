@@ -10,7 +10,6 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -29,7 +28,16 @@ public class Post {
 
     public Post(String content) {
         this.content = content;
-        this.stamp = Timestamp.valueOf(LocalDateTime.now());
+    }
+
+    public String getStamp() {
+        String stampString =  this.stamp.toString();
+        String day = stampString.substring(8, 10);
+        String month = stampString.substring(5, 7);
+        String year = stampString.substring(0, 4);
+        String hour = stampString.substring(11, 13);
+        String minute = stampString.substring(14, 16);
+        return day + "/" + month + "/" + year + " at " + hour + "." + minute;
     }
 
 }
