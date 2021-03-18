@@ -10,7 +10,6 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -21,14 +20,25 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String content;
+    private String message;
 
     @CreationTimestamp
     private Timestamp stamp;
 
     private Post() {}
 
-    public Post(String content) {
+    public Post(String content) { // This constructor only gets used for writing content to the db
         this.content = content;
+    }
+
+    public String getStamp() {
+        String stampString =  this.stamp.toString();
+        String day = stampString.substring(8, 10);
+        String month = stampString.substring(5, 7);
+        String year = stampString.substring(0, 4);
+        String hour = stampString.substring(11, 13);
+        String minute = stampString.substring(14, 16);
+        return day + "/" + month + "/" + year + " at " + hour + "." + minute;
     }
 
 }
