@@ -19,7 +19,15 @@
                  <groupId>org.springframework.boot</groupId>
                  <artifactId>spring-boot-maven-plugin</artifactId>
              </plugin>
-
+			 <plugin>
+				 <groupId>org.flywaydb</groupId>
+				 <artifactId>flyway-maven-plugin</artifactId>
+				 <version>7.0.0</version>
+				 <configuration>
+					 <url>jdbc:postgresql://localhost:5432/acebook_springboot_development</url>
+					 <user>harrycarton</user>
+				 </configuration>
+			 </plugin>
              <plugin>
                  <groupId>com.github.eirslett</groupId>
                  <artifactId>frontend-maven-plugin</artifactId>
