@@ -1,4 +1,5 @@
 cd ~
+fuser -k 8080/tcp
 sudo yum install -y java-1.8.0-openjdk-devel.x86_64
 sudo alternatives --config java
 cd /usr/local/lib/
