@@ -5,11 +5,12 @@ class NewPost extends React.Component {
     super(props);
     this.input = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.host = 'http://' + window.location.host + '/api/posts';
   }
 
  handleSubmit(event) {
     event.preventDefault();
-    fetch('http://localhost:8080/api/posts', {
+    fetch(this.host, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({content: this.input.current.value}),
