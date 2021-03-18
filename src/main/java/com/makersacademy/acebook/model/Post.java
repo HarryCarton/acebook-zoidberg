@@ -26,7 +26,7 @@ public class Post {
 
     private Post() {}
 
-    public Post(String content) { // This constructor only gets used for writing content to the db
+    public Post(String content) {
         this.content = content;
     }
 
