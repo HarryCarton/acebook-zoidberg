@@ -39,7 +39,7 @@ public class Post {
         String year = stampString.substring(0, 4);
         String hour = stampString.substring(11, 13);
         String minute = stampString.substring(14, 16);
-        return day + "/" + month + "/" + year + " at " + hour + "." + minute;
+        return day + "/" + month + "/" + year + " at " + hour + ":" + minute;
     }
 
 }
