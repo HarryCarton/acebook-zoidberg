@@ -6,7 +6,10 @@ class Post extends React.Component {
         this.content = props.post.content;
         this.stamp = props.post.stamp;
         this.likes = props.post.likes;
+        this.href = props.post._links.self.href;
     }
+
+
 
     render() {
        return (
