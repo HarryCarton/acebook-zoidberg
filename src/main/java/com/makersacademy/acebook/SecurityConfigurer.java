@@ -28,10 +28,19 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/user").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/").permitAll()
-                .and().formLogin();
+            http.authorizeRequests()
+                    .antMatchers("/bower_components/**", "/*.js",
+                            "/*.jsx", "/main.css").permitAll()
+                    .anyRequest().authenticated()
+                    .and()
+                    .formLogin()
+                    .defaultSuccessUrl("/", true)
+                    .permitAll()
+                    .and()
+                    .httpBasic()
+                    .and()
+                    .csrf().disable()
+                    .logout()
+                    .logoutSuccessUrl("/");
     }
 }
