@@ -44,17 +44,3 @@ class Post extends React.Component {
 }
 
 export default Post;
-
-//
-//    handleSubmit(event) {
-//        event.preventDefault();
-//        fetch(this.host, {
-//            method: 'PATCH',
-//            headers: {'Content-Type': 'application/json'},
-//            body: JSON.stringify({likes: this.likes += 1}),
-//            }).then((response) => {
-//                return response.json();
-//            }).then((data) => {
-//                this.props.updatePosts(data);
-//            })
-//        }
