@@ -33,7 +33,9 @@ class Post extends React.Component {
        				{this.content}<br />
        				{this.stamp}<br />
        				<form id={this.href} onSubmit={this.handleSubmit}>
-       				    <button type='submit'>Like</button> {this.likes} Likes
+       				    <button type='submit'>Like</button> {this.likes} {
+       				        this.likes === 1 ? "Like" : "Likes"
+       				    }
        				</form>
        			</div>
        		</div>
