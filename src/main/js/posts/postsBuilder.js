@@ -1,6 +1,7 @@
 import React from 'react';
-import Posts from './posts'
-import NewPost from './newPost'
+import Post from './post';
+import Posts from './posts';
+import NewPost from './newPost';
 const client = require('../client');
 
 class PostsBuilder extends React.Component {
