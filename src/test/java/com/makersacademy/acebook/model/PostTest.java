@@ -15,4 +15,9 @@ public class PostTest {
 		assertThat(post.getContent(), containsString("hello"));
 	}
 
+	@Test
+	public void postHasLikes() {
+		assertEquals(post.getLikes(), 0);
+	}
+
 }
